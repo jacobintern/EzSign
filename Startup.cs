@@ -23,6 +23,7 @@ namespace EzSign
         {
             services.AddControllers();
             services.AddMvc();
+            var cs = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<EzSignDBContext>(
                 options =>
                 {

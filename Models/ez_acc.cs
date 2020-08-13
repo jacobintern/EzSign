@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EzSign.Models
 {
-    public class ez_acc
+    public class ez_emp
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int auto_id { get; set; }

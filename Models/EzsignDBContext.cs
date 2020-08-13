@@ -8,6 +8,6 @@ namespace EzSign.Models
         {
         }
 
-        public DbSet<ez_acc> AccountModel { get; set; }
+        public DbSet<ez_emp> ez_emp { get; set; }
     }
 }

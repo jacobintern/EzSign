@@ -19,7 +19,7 @@ namespace EzSign.Controllers
         [HttpGet]
         public string Get()
         {
-            var data = _dbContext.AccountModel;
+            var data = _dbContext.ez_emp;
 
             return "read" + data.FirstOrDefault().first_name + data.FirstOrDefault().last_name;
         }
