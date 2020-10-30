@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using EzSign.Interface;
 using EzSign.Models;
 
 namespace EzSign.Controllers
@@ -9,17 +10,17 @@ namespace EzSign.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly EzSignDBContext _dbContext;
+        private readonly IRepository<ez_emp> _ez_emp;
 
-        public UserController(EzSignDBContext dbContext)
+        public UserController(IRepository<ez_emp> ez_emp)
         {
-            _dbContext = dbContext;
+            _ez_emp = ez_emp;
         }
 
         [HttpGet]
         public string Get()
         {
-            var data = _dbContext.ez_emp;
+            var data = _ez_emp.GetAll();
 
             return "read" + data.FirstOrDefault().first_name + data.FirstOrDefault().last_name;
         }

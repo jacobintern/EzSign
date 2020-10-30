@@ -5,6 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using EzSign.Models;
 using Microsoft.AspNetCore.Http;
+using EzSign.Models.Repository;
+using EzSign.Interface;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace EzSign
@@ -23,13 +26,12 @@ namespace EzSign
         {
             services.AddControllers();
             services.AddMvc();
+            // get connect string
             var cs = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<EzSignDBContext>(
-                options =>
-                {
-                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-                }
-            );
+            // register context
+            services.AddDbContext<EzSignDBContext>(options => options.UseSqlServer(cs));
+            // register repository
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
